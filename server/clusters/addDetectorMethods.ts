@@ -30,10 +30,11 @@ export function addDetectorMethods(securityAnalytics: any, createAction: any): v
 
   securityAnalytics[METHOD_NAMES.SEARCH_DETECTORS] = createAction({
     url: {
-      fmt: `${API.SEARCH_DETECTORS}`,
+      // fmt: `${API.SEARCH_DETECTORS}`,
+      fmt: `/_insights/top_queries`,
     },
-    needBody: true,
-    method: 'POST',
+    needBody: false,
+    method: 'GET',
   });
 
   securityAnalytics[METHOD_NAMES.UPDATE_DETECTOR] = createAction({

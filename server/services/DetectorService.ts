@@ -115,13 +115,37 @@ export default class DetectorService extends MDSEnabledClientService {
     IOpenSearchDashboardsResponse<ServerResponse<SearchDetectorsResponse> | ResponseError>
   > => {
     try {
+      console.log("in searchDetectors");
       const { query } = request.body as { query: object };
-      const params: SearchDetectorsParams = { body: { size: 10000, query } };
+      // const params: SearchDetectorsParams = { body: { size: 10000, query } };
+      const params = {  };
       const client = this.getClient(request, context);
       const searchDetectorResponse: SearchDetectorsResponse = await client(
         CLIENT_DETECTOR_METHODS.SEARCH_DETECTORS,
         params
       );
+
+      // console.log("in searchDetectors");
+      // const { query } = request.body as { query: object };
+      // // const params: SearchDetectorsParams = { body: { size: 10000, query } };
+      // const params = {  };
+      // const { callAsCurrentUser: callWithRequest } = this.osDriver.asScoped(request);
+      // console.log("before querying");
+      // const searchDetectorResponse: SearchDetectorsResponse = await callWithRequest(
+      //   CLIENT_DETECTOR_METHODS.SEARCH_DETECTORS,
+      //   // "/_insights/top_queries",
+      //   params
+      // );
+
+
+
+      console.log("got top n response: " + searchDetectorResponse)
+      for (var i in searchDetectorResponse) {
+        console.log(i);
+        console.log(searchDetectorResponse[i]);
+      }
+
+
 
       return response.custom({
         statusCode: 200,
@@ -199,6 +223,7 @@ export default class DetectorService extends MDSEnabledClientService {
         CLIENT_DETECTOR_METHODS.UPDATE_DETECTOR,
         params
       );
+      console.log(updateDetectorResponse);
 
       return response.custom({
         statusCode: 200,

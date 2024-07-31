@@ -11,13 +11,14 @@ import {
   UpdateDetectorResponse,
 } from '../Detector';
 import { ServerResponse } from './ServerResponse';
+import { GetFieldMappingViewResponse } from "../../server/models/interfaces";
 
 export type MatchAllQuery = { match_all: {} };
 
 export interface IDetectorService {
   createDetector(detector: Detector): Promise<ServerResponse<CreateDetectorResponse>>;
   deleteDetector(detectorId: string): Promise<ServerResponse<DeleteDetectorResponse>>;
-  getDetectors(): Promise<ServerResponse<SearchDetectorsResponse>>;
+  getDetectors(): Promise<ServerResponse<any>>;
   updateDetector(
     detectorId: string,
     detector: Detector
